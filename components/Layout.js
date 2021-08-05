@@ -17,11 +17,10 @@ const useStyles = makeStyles({
     display: "flex",
     flexDirection: "column",
   },
-  imgStyle:{
-    marginTop:"23px",
-  }
+  imgStyle: {
+    marginTop: "23px",
+  },
 });
-
 
 const Layout = ({ children }) => {
   const classes = useStyles();
@@ -29,10 +28,27 @@ const Layout = ({ children }) => {
   return (
     <Grid container item xs={12}>
       <Grid className={classes.layoutBlock}>
-        <Image width={385} height={131} src={LottoImg} alt="Picture of Lotto" />
-        {children}
+        <Grid>
+          <Image
+            width={385}
+            height={131}
+            src={LottoImg}
+            alt="Picture of Lotto"
+          />
+        </Grid>
+        <Grid>{children}</Grid>
+
+        <Grid
+          style={{marginTop:"30%"}}
+          container
+          item
+          xs={12}
+          justifyContent="center"
+          alignItems="center"
+        >
+          <div>CopyRight By Sangdon</div>
+        </Grid>
       </Grid>
-      ;
     </Grid>
   );
 };

@@ -15,8 +15,8 @@ const useStyles = makeStyles({
   },
 });
 const numFormatter = () => {
-    var num = Math.floor(Math.random() * 45) + 1;
-    num = Number(num).toString();
+  var num = Math.floor(Math.random() * 45) + 1;
+  num = Number(num).toString();
   if (Number(num) < 10 && num.length == 1) num = "0" + num;
   return num;
 };
@@ -33,9 +33,9 @@ const RandomNumber = () => {
         value: numFormatter(),
       },
     ]);
-    if(numbers.length > 5){
-        alert("6차리를 초과할수 없습니다! 다시 생성해 주세요!")
-        setNumbers([]);
+    if (numbers.length > 5) {
+      alert("6차리를 초과할수 없습니다! 다시 생성해 주세요!");
+      setNumbers([]);
     }
   };
   const hiddenClick = () => {
@@ -57,20 +57,33 @@ const RandomNumber = () => {
       alignItems="center"
     >
       {hidden ? (
-        <Grid style={{marginBottom:'40%'}}container item justifyContent='center' alignContent='center' >
-          <Grid container item  justifyContent='center' alignContent='center'>
-              <h1> 로또 번호 추첨기</h1>
+        <Grid
+          style={{ marginBottom: "40%" }}
+          container
+          item
+          justifyContent="center"
+          alignContent="center"
+        >
+          <Grid container item justifyContent="center" alignContent="center">
+            <h1> 로또 번호 추첨기</h1>
           </Grid>
-          <Grid container item  justifyContent='center' alignContent='center'>
+          <Grid container item justifyContent="center" alignContent="center">
             <Button variant="contained" onClick={hiddenClick}>
               번호 생성하러 가기
             </Button>
           </Grid>
         </Grid>
       ) : (
-        <Grid style={{marginBottom:'70%'}} container item alignItems='center' justifyContent='center' xs={12}>
+        <Grid
+          style={{ marginBottom: "70%" }}
+          container
+          item
+          alignItems="center"
+          justifyContent="center"
+          xs={12}
+        >
           <Button variant="contained" onClick={createNumber}>
-            {numbers.length + 1}번 생성하기
+            번호 생성하기
           </Button>
           <Button variant="contained" onClick={hiddenFalseClick}>
             뒤로가기
