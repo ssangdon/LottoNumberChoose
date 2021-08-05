@@ -13,8 +13,6 @@ const useStyles = makeStyles({
     height: "400px",
     boxShadow: "0 0 8px 0 rgba(0, 0 ,0, 0.04)",
     marginTop: "96px",
-    marginLeft: "32%",
-    marginRight: "32%",
     marginBottom: "32px",
     display: "flex",
     flexDirection: "column",
