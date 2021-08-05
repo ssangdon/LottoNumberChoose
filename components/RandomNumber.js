@@ -33,6 +33,10 @@ const RandomNumber = () => {
         value: numFormatter(),
       },
     ]);
+    if(numbers.length > 5){
+        alert("6차리를 초과할수 없습니다! 다시 생성해 주세요!")
+        setNumbers([]);
+    }
   };
   const hiddenClick = () => {
     setHidden(false);
