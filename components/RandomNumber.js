@@ -1,50 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles({
   ballStyle: {
     border: "2px solid black",
-    borderRadius: "50%",
+    borderRadius: "30%",
   },
+  containerStyle:{
+      height:"30px",
+  }
 });
-const NumArr = [];
-const numFormat = (num) => {
+const numFormatter = (num) => {
   num = Number(num).toString();
   if (Number(num) < 10 && num.length == 1) num = "0" + num;
   return num;
 };
-for (var i = 0; i < 6; i++) {
-    var ranN = Math.floor(Math.random() * 45) + 1;
-    var twoN = numFormat(ranN);
-  NumArr.push(twoN);
-}
+
 const RandomNumber = () => {
   const classes = useStyles();
+  const [numbers, setNumbers] = useState([]);
+  const createNumber = () => {
+    setNumbers([
+      ...numbers,
+      {
+        key: numbers.length,
+        value: Math.floor(Math.random() * 45) + 1,
+      },
+    ]);
+  };
 
   return (
     <Grid container item xs={12} justifyContent="center" alignItems="center">
-      <Grid container item justifyContent="center" xs={1} alignItems="center">
-        <Grid
-          container
-          item
-          justifyContent="center"
-          xs={12}
-          alignItems="center"
-        >
-          1번
-        </Grid>
-        <Grid
-          container
-          item
-          justifyContent="center"
-          xs={12}
-          alignItems="center"
-        >
-          <div className={classes.ballStyle}>{NumArr[0]}</div>
+      <button onClick={createNumber}>{numbers.length + 1}번 생성하기</button>
+      <Grid container item justifyContent="center" xs={6} alignItems="center">
+        <Grid container item justifyContent="center" xs={12} alignItems="center">
+          {numbers.map((d) => (
+            <div key={d.key}>
+              <Grid
+                container
+                item
+                justifyContent="center"
+                xs={12}
+                alignItems="center"
+              >
+                <Grid
+                  container
+                  item
+                  justifyContent="center"
+                  xs={12}
+                  alignItems="center"
+                >
+                  {d.key + 1}번
+                </Grid>
+                <Grid
+                  continaer
+                  item
+                  justifyContent="center"
+                  xs={8}
+                  alignItems="center"
+                  className={classes.ballStyle}
+                >
+                  {d.value}
+                </Grid>
+              </Grid>
+            </div>
+          ))}
         </Grid>
       </Grid>
-      <Grid container item justifyContent="center" xs={1} alignItems="center">
+    </Grid>
+  );
+};
+
+export default RandomNumber;
+
+{
+  /* <Grid container item justifyContent="center" xs={1} alignItems="center">
         <Grid
           container
           item
@@ -61,7 +92,7 @@ const RandomNumber = () => {
           xs={12}
           alignItems="center"
         >
-          <div className={classes.ballStyle}>{NumArr[1]}</div>
+          <div className={classes.ballStyle}></div>
         </Grid>
       </Grid>
       <Grid container item justifyContent="center" xs={1} alignItems="center">
@@ -81,7 +112,7 @@ const RandomNumber = () => {
           xs={12}
           alignItems="center"
         >
-          <div className={classes.ballStyle}>{NumArr[2]}</div>
+          <div className={classes.ballStyle}></div>
         </Grid>
       </Grid>
       <Grid container item justifyContent="center" xs={1} alignItems="center">
@@ -101,7 +132,7 @@ const RandomNumber = () => {
           xs={12}
           alignItems="center"
         >
-          <div className={classes.ballStyle}>{NumArr[3]}</div>
+          <div className={classes.ballStyle}></div>
         </Grid>
       </Grid>
       <Grid container item justifyContent="center" xs={1} alignItems="center">
@@ -121,10 +152,12 @@ const RandomNumber = () => {
           xs={12}
           alignItems="center"
         >
-          <div className={classes.ballStyle}>{NumArr[4]}</div>
+          <div className={classes.ballStyle}></div>
         </Grid>
-      </Grid>
-      <Grid container item justifyContent="center" xs={1} alignItems="center">
+      </Grid> */
+}
+{
+  /* <Grid container item justifyContent="center" xs={1} alignItems="center">
         <Grid
           container
           item
@@ -141,11 +174,17 @@ const RandomNumber = () => {
           xs={12}
           alignItems="center"
         >
-          <div className={classes.ballStyle}>{NumArr[5]}</div>
+          <div className={classes.ballStyle}></div>
         </Grid>
-      </Grid>
-    </Grid>
-  );
-};
+      </Grid> */
 
-export default RandomNumber;
+
+
+// const createNumber = () => {
+//   for (var i = 0; i < 6; i++) {
+//     var ranN = Math.floor(Math.random() * 45) + 1;
+//     var twoN = numFormat(ranN);
+//     NumArr.push(twoN);
+//   }
+// };
+}
