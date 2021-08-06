@@ -3,6 +3,10 @@ import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import MenuItem from "@material-ui/core/MenuItem";
+import Select from "@material-ui/core/Select";
+import InputLabel from "@material-ui/core/InputLabel";
+import FormControl from "@material-ui/core/FormControl";
 
 const useStyles = makeStyles({
   ballStyle: {
@@ -25,6 +29,7 @@ const RandomNumber = () => {
   const classes = useStyles();
   const [hidden, setHidden] = useState(true);
   const [numbers, setNumbers] = useState([]);
+  const [price, setPrice] = useState("");
   const match = useMediaQuery("(max-width : 600px)");
 
   const createNumber = () => {
@@ -54,6 +59,10 @@ const RandomNumber = () => {
     if (Number(num) < 10 && num.length == 1) num = "0" + num;
     return num;
   };
+  const checkPrice = (e) => {
+    setPrice(e.target.value);
+  };
+
   return (
     <Grid
       className={
@@ -76,10 +85,21 @@ const RandomNumber = () => {
           <Grid container item justifyContent="center" alignContent="center">
             <h1> 로또 번호 추첨기</h1>
           </Grid>
+          <div></div>
           <Grid container item justifyContent="center" alignContent="center">
-            <Button variant="contained" onClick={hiddenClick}>
-              번호 생성하러 가기
-            </Button>
+            <FormControl style={{ width: "200px" }}>
+              <InputLabel>금액을 선택하세요!</InputLabel>
+              <Select onChange={checkPrice} value={price}>
+                <MenuItem value={"1000"}>1,000원</MenuItem>
+                <MenuItem value={"2000"}>2,000원</MenuItem>
+                <MenuItem value={"3000"}>3,000원</MenuItem>
+                <MenuItem value={"4000"}>4,000원</MenuItem>
+                <MenuItem value={"5000"}>5,000원</MenuItem>
+              </Select>
+              <Button variant="contained" onClick={hiddenClick}>
+                번호 생성하러 가기
+              </Button>
+            </FormControl>
           </Grid>
         </Grid>
       ) : (
@@ -103,14 +123,21 @@ const RandomNumber = () => {
             </Button>
           </Grid>
           <Grid
-              container
-              item
-              justifyContent="center"
-              xs={12}
-              alignItems="center"
-            >
-              {numbers.map((d) => (
-                <div key={d.key}>
+            container
+            item
+            justifyContent="center"
+            xs={12}
+            alignItems="center"
+          >
+            {numbers.map((d) => (
+              <div key={d.key}>
+                <Grid
+                  container
+                  item
+                  justifyContent="center"
+                  xs={12}
+                  alignItems="center"
+                >
                   <Grid
                     container
                     item
@@ -118,29 +145,22 @@ const RandomNumber = () => {
                     xs={12}
                     alignItems="center"
                   >
-                    <Grid
-                      container
-                      item
-                      justifyContent="center"
-                      xs={12}
-                      alignItems="center"
-                    >
-                      {d.key + 1}번
-                    </Grid>
-                    <Grid
-                      container
-                      item
-                      justifyContent="center"
-                      xs={8}
-                      alignItems="center"
-                      className={classes.ballStyle}
-                    >
-                      {d.value}
-                    </Grid>
+                    {d.key + 1}번
                   </Grid>
-                </div>
-              ))}
-            </Grid>
+                  <Grid
+                    container
+                    item
+                    justifyContent="center"
+                    xs={8}
+                    alignItems="center"
+                    className={classes.ballStyle}
+                  >
+                    {d.value}
+                  </Grid>
+                </Grid>
+              </div>
+            ))}
+          </Grid>
           <Grid
             container
             item
@@ -148,7 +168,11 @@ const RandomNumber = () => {
             justifyContent="center"
             alignItems="center"
           >
-            <Button style={{marginTop:'20%'}}variant="contained" onClick={hiddenFalseClick}>
+            <Button
+              style={{ marginTop: "20%" }}
+              variant="contained"
+              onClick={hiddenFalseClick}
+            >
               뒤로가기
             </Button>
           </Grid>
@@ -159,9 +183,7 @@ const RandomNumber = () => {
             justifyContent="center"
             xs={6}
             alignItems="center"
-          >
-            
-          </Grid>
+          ></Grid>
         </Grid>
       )}
     </Grid>
