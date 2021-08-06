@@ -2,29 +2,31 @@ import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
 const useStyles = makeStyles({
   ballStyle: {
     border: "2px solid black",
     borderRadius: "30%",
   },
-  containerStyle: {
+  mobileContainerStyle: {
+    height: "30px",
+    width: "100%",
+    position: "relative",
+  },
+  pcContainerStyle: {
     height: "30px",
     width: "100%",
     position: "relative",
   },
 });
-const numFormatter = () => {
-  var num = Math.floor(Math.random() * 45) + 1;
-  num = Number(num).toString();
-  if (Number(num) < 10 && num.length == 1) num = "0" + num;
-  return num;
-};
 
 const RandomNumber = () => {
   const classes = useStyles();
   const [hidden, setHidden] = useState(true);
   const [numbers, setNumbers] = useState([]);
+  const match = useMediaQuery("(max-width : 600px)");
+
   const createNumber = () => {
     setNumbers([
       ...numbers,
@@ -34,7 +36,7 @@ const RandomNumber = () => {
       },
     ]);
     if (numbers.length > 5) {
-      alert("6차리를 초과할수 없습니다! 다시 생성해 주세요!");
+      alert("6자리를 초과할수 없습니다! 다시 생성해 주세요!");
       setNumbers([]);
     }
   };
@@ -46,10 +48,17 @@ const RandomNumber = () => {
     setHidden(true);
     setNumbers([]);
   };
-
+  const numFormatter = () => {
+    var num = Math.floor(Math.random() * 45) + 1;
+    num = Number(num).toString();
+    if (Number(num) < 10 && num.length == 1) num = "0" + num;
+    return num;
+  };
   return (
     <Grid
-      className={classes.containerStyle}
+      className={
+        match ? classes.mobileContainerStyle : classes.pcContainerStyle
+      }
       container
       item
       xs={12}
@@ -82,20 +91,18 @@ const RandomNumber = () => {
           justifyContent="center"
           xs={12}
         >
-          <Button variant="contained" onClick={createNumber}>
-            번호 생성하기
-          </Button>
-          <Button variant="contained" onClick={hiddenFalseClick}>
-            뒤로가기
-          </Button>
           <Grid
             container
             item
+            xs={12}
             justifyContent="center"
-            xs={6}
             alignItems="center"
           >
-            <Grid
+            <Button variant="contained" onClick={createNumber}>
+              번호 생성하기
+            </Button>
+          </Grid>
+          <Grid
               container
               item
               justifyContent="center"
@@ -134,6 +141,26 @@ const RandomNumber = () => {
                 </div>
               ))}
             </Grid>
+          <Grid
+            container
+            item
+            xs={12}
+            justifyContent="center"
+            alignItems="center"
+          >
+            <Button style={{marginTop:'20%'}}variant="contained" onClick={hiddenFalseClick}>
+              뒤로가기
+            </Button>
+          </Grid>
+
+          <Grid
+            container
+            item
+            justifyContent="center"
+            xs={6}
+            alignItems="center"
+          >
+            
           </Grid>
         </Grid>
       )}
