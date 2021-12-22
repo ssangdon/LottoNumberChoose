@@ -7,7 +7,6 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
-import StarIcon from '@mui/icons-material/Star';
 
 
 const useStyles = makeStyles({
@@ -209,7 +208,7 @@ const RandomNumber = () => {
             style={{borderTop:'2px solid black', marginTop:'30px'}}
           >
             <Grid container item justifyContent='center' xs={12} alignItems="center">
-              
+              Technology Stack : NodeJs / React / NextJs / Material-Ui
               </Grid>
           </Grid>
         </Grid>
