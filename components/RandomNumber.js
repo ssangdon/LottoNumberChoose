@@ -7,11 +7,15 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
 import InputLabel from "@material-ui/core/InputLabel";
 import FormControl from "@material-ui/core/FormControl";
+import StarIcon from '@mui/icons-material/Star';
+
 
 const useStyles = makeStyles({
   ballStyle: {
     border: "2px solid black",
-    borderRadius: "30%",
+    borderRadius: "50%",
+    background: "yellow",
+    width:"15px"
   },
   mobileContainerStyle: {
     height: "30px",
@@ -105,7 +109,6 @@ const RandomNumber = () => {
           <Grid container item justifyContent="center" alignContent="center">
             <h1> 로또 번호 추첨기</h1>
           </Grid>
-          <div></div>
           <Grid container item justifyContent="center" alignContent="center">
             <FormControl style={{ width: "200px" }}>
               <InputLabel>금액을 선택하세요!</InputLabel>
@@ -137,6 +140,7 @@ const RandomNumber = () => {
             xs={12}
             justifyContent="center"
             alignItems="center"
+            style={{borderBottom:'2px solid black', marginBottom:'40px'}}
           >
             {/* <Button variant="contained" onClick={createNumber}>
               번호 생성하기
@@ -165,7 +169,6 @@ const RandomNumber = () => {
                     xs={12}
                     alignItems="center"
                   >
-
                     {d.key > 6 ? ((d.key % 6) == 0 ? 6 : (d.key % 6)): d.key } 번
                   </Grid>
                   <Grid
@@ -190,7 +193,7 @@ const RandomNumber = () => {
             alignItems="center"
           >
             <Button
-              style={{ marginTop: "1%" }}
+              style={{ marginTop: "3%" }}
               variant="contained"
               onClick={hiddenFalseClick}
             >
@@ -201,9 +204,14 @@ const RandomNumber = () => {
             container
             item
             justifyContent="center"
-            xs={6}
+            xs={12}
             alignItems="center"
-          ></Grid>
+            style={{borderTop:'2px solid black', marginTop:'30px'}}
+          >
+            <Grid container item justifyContent='center' xs={12} alignItems="center">
+              
+              </Grid>
+          </Grid>
         </Grid>
       )}
     </Grid>
@@ -211,47 +219,3 @@ const RandomNumber = () => {
 };
 
 export default RandomNumber;
-
-//   const recreateNum = () =>{
-//       for(var i = 0; i<6; i++){
-//         numbers.push(numFormatter());
-//       }
-//   }
-// useEffect(() => {
-//   const make = setTimeout(() => {
-//     setNumbers([
-//       ...numbers,
-//       {
-//         key: numbers.length,
-//         value: numFormatter(),
-//       },
-//     ]);
-//   }, 1000);
-//   if (numbers.length > 5) {
-//       const values = numbers;
-//       setRows([
-//           ...rows,
-//           {
-//               key: rows.length,
-//               value : values,
-//           }
-//       ])
-//       setNumbers([]);
-//       clearTimeout(make);
-//       // console.log(rows);
-//       // console.log(rows.length);
-//       // console.log(price);
-//       // return clearTimeout(make);
-//       if(rows.length == Number(price) && rows.length != 0){
-//           console.log(1230123);
-//           clearTimeout(make);
-//       }
-//       }
-
-// }, [numbers]);
-// useEffect(()=>{
-//   const loop = setInterval(()=>{
-
-//   })
-
-// },[])

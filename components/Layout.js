@@ -62,7 +62,6 @@ const Layout = ({ children }) => {
           justifyContent="center"
           alignItems="center"
         >
-          <div>CopyRight By Sangdon</div>
         </Grid>
       </Grid>
     </Grid>
