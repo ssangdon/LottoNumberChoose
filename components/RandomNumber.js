@@ -149,7 +149,7 @@ const RandomNumber = () => {
             container
             item
             justifyContent="center"
-            xs={9}
+            xs={7}
             alignItems="center"
           >
              {numbers.map((d) => (
@@ -174,7 +174,7 @@ const RandomNumber = () => {
                     container
                     item
                     justifyContent="center"
-                    xs={7}
+                    xs={8}
                     alignItems="center"
                     className={classes.ballStyle}
                   >
