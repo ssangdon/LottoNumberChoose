@@ -4,7 +4,6 @@ import RandomNumber from "../components/RandomNumber";
 import Grid from '@material-ui/core/Grid';
 
 
-
 const Index = () => {
   return (
     <div>

@@ -12,7 +12,7 @@ const useStyles = makeStyles({
     backgroundColor: "white",
     borderRadius: "16px",
     width: "720px",
-    height: "700px",
+    height: "500px",
     boxShadow: "0 0 8px 0 rgba(0, 0 ,0, 0.04)",
     marginTop: "96px",
     marginBottom: "32px",

@@ -7,5 +7,5 @@ body {
   @font-face {
     font-family: "InkLipquid";
     font-weight: 200;
-    src: url("/fonts/InkLipquidFonts.ttf") format("truetype");
+    src: url("/public/fonts/InkLipquidFonts.ttf") format("truetype");
   }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -28,37 +28,57 @@ const useStyles = makeStyles({
 const RandomNumber = () => {
   const classes = useStyles();
   const [hidden, setHidden] = useState(true);
+  const [rows, setRows] = useState([]);
   const [numbers, setNumbers] = useState([]);
   const [price, setPrice] = useState("");
   const match = useMediaQuery("(max-width : 600px)");
+  const numbers_ref = useRef([]);
+  const price_ref = useRef("");
 
-  const createNumber = () => {
-    setNumbers([
-      ...numbers,
-      {
-        key: numbers.length,
-        value: numFormatter(),
-      },
-    ]);
-    if (numbers.length > 5) {
-      alert("6자리를 초과할수 없습니다! 다시 생성해 주세요!");
-      setNumbers([]);
-    }
-  };
-  const hiddenClick = () => {
-    setHidden(false);
+  const getValue = async () => {
+    const value = await axios.get(setPrice());
   };
 
-  const hiddenFalseClick = () => {
-    setHidden(true);
-    setNumbers([]);
-  };
+  // useEffect(() => {
+    
+  
+  // }, []);
+
+
   const numFormatter = () => {
     var num = Math.floor(Math.random() * 45) + 1;
     num = Number(num).toString();
     if (Number(num) < 10 && num.length == 1) num = "0" + num;
     return num;
   };
+
+  const hiddenClick = () => {
+    //값을 선택하지 않았을 경우
+    if(!price){
+      alert("금액을 선택해 주세요!");
+    }
+    else{
+      const loop = setInterval(() => {
+        numbers_ref.current.push({
+          key: numbers_ref.current.length +1,
+          value: numFormatter(),
+        });
+        setNumbers([...numbers_ref.current])
+        if (numbers_ref.current.length == 6 * price) {
+          console.log(numbers)
+          clearInterval(loop);
+        }
+      }, 500);
+      setHidden(false)
+    }
+  };
+  const hiddenFalseClick = () => {
+    setHidden(true);
+    setNumbers([]);
+    numbers_ref.current= [];
+  };
+  
+
   const checkPrice = (e) => {
     setPrice(e.target.value);
   };
@@ -90,11 +110,11 @@ const RandomNumber = () => {
             <FormControl style={{ width: "200px" }}>
               <InputLabel>금액을 선택하세요!</InputLabel>
               <Select onChange={checkPrice} value={price}>
-                <MenuItem value={"1000"}>1,000원</MenuItem>
-                <MenuItem value={"2000"}>2,000원</MenuItem>
-                <MenuItem value={"3000"}>3,000원</MenuItem>
-                <MenuItem value={"4000"}>4,000원</MenuItem>
-                <MenuItem value={"5000"}>5,000원</MenuItem>
+                <MenuItem value={1}>1,000원</MenuItem>
+                <MenuItem value={2}>2,000원</MenuItem>
+                <MenuItem value={3}>3,000원</MenuItem>
+                <MenuItem value={4}>4,000원</MenuItem>
+                <MenuItem value={5}>5,000원</MenuItem>
               </Select>
               <Button variant="contained" onClick={hiddenClick}>
                 번호 생성하러 가기
@@ -118,18 +138,18 @@ const RandomNumber = () => {
             justifyContent="center"
             alignItems="center"
           >
-            <Button variant="contained" onClick={createNumber}>
+            {/* <Button variant="contained" onClick={createNumber}>
               번호 생성하기
-            </Button>
+            </Button> */}
           </Grid>
           <Grid
             container
             item
             justifyContent="center"
-            xs={12}
+            xs={6}
             alignItems="center"
           >
-            {numbers.map((d) => (
+             {numbers.map((d) => (
               <div key={d.key}>
                 <Grid
                   container
@@ -145,7 +165,8 @@ const RandomNumber = () => {
                     xs={12}
                     alignItems="center"
                   >
-                    {d.key + 1}번
+
+                    {d.key > 6 ? ((d.key % 6) == 0 ? 6 : (d.key % 6)): d.key } 번
                   </Grid>
                   <Grid
                     container
@@ -169,14 +190,13 @@ const RandomNumber = () => {
             alignItems="center"
           >
             <Button
-              style={{ marginTop: "20%" }}
+              style={{ marginTop: "1%" }}
               variant="contained"
               onClick={hiddenFalseClick}
             >
               뒤로가기
             </Button>
           </Grid>
-
           <Grid
             container
             item
@@ -191,3 +211,47 @@ const RandomNumber = () => {
 };
 
 export default RandomNumber;
+
+//   const recreateNum = () =>{
+//       for(var i = 0; i<6; i++){
+//         numbers.push(numFormatter());
+//       }
+//   }
+// useEffect(() => {
+//   const make = setTimeout(() => {
+//     setNumbers([
+//       ...numbers,
+//       {
+//         key: numbers.length,
+//         value: numFormatter(),
+//       },
+//     ]);
+//   }, 1000);
+//   if (numbers.length > 5) {
+//       const values = numbers;
+//       setRows([
+//           ...rows,
+//           {
+//               key: rows.length,
+//               value : values,
+//           }
+//       ])
+//       setNumbers([]);
+//       clearTimeout(make);
+//       // console.log(rows);
+//       // console.log(rows.length);
+//       // console.log(price);
+//       // return clearTimeout(make);
+//       if(rows.length == Number(price) && rows.length != 0){
+//           console.log(1230123);
+//           clearTimeout(make);
+//       }
+//       }
+
+// }, [numbers]);
+// useEffect(()=>{
+//   const loop = setInterval(()=>{
+
+//   })
+
+// },[])
