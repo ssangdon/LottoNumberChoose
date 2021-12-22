@@ -174,7 +174,7 @@ const RandomNumber = () => {
                     container
                     item
                     justifyContent="center"
-                    xs={8}
+                    xs={7}
                     alignItems="center"
                     className={classes.ballStyle}
                   >
