@@ -146,7 +146,7 @@ const RandomNumber = () => {
             container
             item
             justifyContent="center"
-            xs={6}
+            xs={8}
             alignItems="center"
           >
              {numbers.map((d) => (
