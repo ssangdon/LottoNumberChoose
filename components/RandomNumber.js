@@ -208,7 +208,7 @@ const RandomNumber = () => {
             style={{borderTop:'2px solid black', marginTop:'30px'}}
           >
             <Grid container item justifyContent='center' xs={12} alignItems="center">
-              Technology Stack : NodeJs / React / NextJs / Material-Ui
+              NodeJs / React / NextJs / Material-Ui
               </Grid>
           </Grid>
         </Grid>
